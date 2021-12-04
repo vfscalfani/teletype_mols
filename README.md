@@ -13,9 +13,13 @@ If you have any feedback on how to 'shrink' the molecules, it would be greatly a
 [RDKit](https://www.rdkit.org/) includes the [Schroedinger 2D coordinate generation library](https://github.com/schrodinger/coordgenlibs) 
 (CoordGen) and this can be used to get the x,y coordinates of atoms and bonds for plotting.
 
-The rdkit_print_mol_ascii notebook in this repository demonstrates one way of printing molecules as ascii characters 
-starting with SMILES. Here is an example of how molecules look. Atoms are printed with their 
-standard symbols, and bonds are denoted with a `*`:
+The [rdkit_print_mol_ascii](https://github.com/vfscalfani/teletype_mols/blob/main/rdkit_print_mol_ascii.ipynb) notebook in this repository 
+demonstrates one way of printing molecules as ascii characters using RDKit.
+
+The `print_mol_ascii` function is likely most useful in an ipython console to quickly view molecules (i.e., not in a full Jupyter Notebook). 
+Eventually I would like to adapt the script into a python argparse command line application for use in a terminal window, more generally.
+
+Here is an example of how molecules look. Atoms are printed with their standard symbols, and bonds are denoted with a `*`:
 
 ```console
 
