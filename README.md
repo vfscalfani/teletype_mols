@@ -1,5 +1,9 @@
 # teletype_mols
 
+**Update**
+
+> For an unknown reason, GitHub is no longer displaying the molecule printed ascii within the Jupyter Notebook, however, you can view the entire ascii output online using the Jupyter nbviewer interface: [rdkit_print_mol_ascii on nbviewer](https://nbviewer.org/github/vfscalfani/teletype_mols/blob/main/rdkit_print_mol_ascii.ipynb)
+
 This is a work in-progress and mostly for fun because I like to print molecules in the terminal.
 Below are two very basic methods that have worked for me.
 
