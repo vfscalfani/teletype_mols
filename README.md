@@ -1,8 +1,8 @@
 # teletype_mols
 
-**Update**
+**Note**
 
-> For an unknown reason, GitHub is no longer displaying the molecule printed ascii within the Jupyter Notebook, however, you can view the entire ascii output online using the Jupyter nbviewer interface: [rdkit_print_mol_ascii on nbviewer](https://nbviewer.org/github/vfscalfani/teletype_mols/blob/main/rdkit_print_mol_ascii.ipynb)
+> For an unknown reason, GitHub is no longer displaying the molecule printed ascii within the Jupyter Notebook, use the Jupyter nbviewer interface instead: [rdkit_print_mol_ascii on nbviewer](https://nbviewer.org/github/vfscalfani/teletype_mols/blob/main/rdkit_print_mol_ascii.ipynb)
 
 This is a work in-progress and mostly for fun because I like to print molecules in the terminal.
 Below are two very basic methods that have worked for me.
@@ -21,7 +21,6 @@ The [rdkit_print_mol_ascii](https://github.com/vfscalfani/teletype_mols/blob/mai
 demonstrates one way of printing molecules as ascii characters using RDKit.
 
 The `print_mol_ascii` function is likely most useful in an ipython console to quickly view molecules (i.e., not in a full Jupyter Notebook). 
-Eventually I would like to adapt the script into a python argparse command line application for use in a terminal window, more generally.
 
 Here is an example of how molecules look. Atoms are printed with their standard symbols, and bonds are denoted with a `*`:
 
@@ -51,6 +50,122 @@ O               C
                                                                                                                                                                                     
                                                                                                  
 ```
+
+There is also a simple command line script included that is written with python argparse, `print_mols.py`, for use in a terminal window:
+
+```console
+$ python3 print_mols.py -h
+usage: print_mols.py [-h] [-m N] [-x N] SMILES_INPUT
+
+print_mols is a command line interface that uses RDKit to draw molecules as ascii characters from input SMILES. 
+Atoms are printed with their standard symbols, and bonds are denoted with a '*' symbol. Written by Vincent Scalfani
+
+positional arguments:
+  SMILES_INPUT  input SMILES file; use '-' for stdin. The SMILES input file must contain one SMILES per line. Additional columns are not accepted.
+
+optional arguments:
+  -h, --help    show this help message and exit
+  -m N          max number of molecules to draw, default: 10
+  -x N          scale molecule size, default: 16
+```
+
+Here are a couple of examples with the print_mols.py script:
+
+### Print the first two molecules from a file
+
+```console
+$ python3 print_mols.py examples.smi -m2
+                                                         
+                                                         
+                C     *     C                            
+                                                         
+                              *                          
+                *                                        
+                                N                        
+                                                         
+F               C           *                            
+    *       *       *                                    
+        C               C                                
+                                                         
+      *   *                                              
+                                                         
+    F       F                                            
+                                                         
+                                                         
+                                                                         
+                                                                         
+                                                                         
+                                                                         
+                                                Br                        
+                                                                         
+                                                *                        
+                                                                         
+                                                C                        
+                                            *     *                      
+                                        C           C                    
+                                                                         
+                                        *           *                    
+                                                                         
+            C               N           C           C                    
+          *     *       *     *     *       *     *     *                
+        C           C           C               C           Br            
+                                                                         
+        *           *                           *                        
+                                                                         
+        C           C                           N                        
+    *     *     *                                                        
+O           C                                                            
+
+
+```
+
+### Print a molecule from stdin and scale the size
+
+```console
+$ echo 'Cn1c(n[nH]c1=O)Cn2ccc(c(c2=O)Oc3cc(cc(c3)Cl)C#N)C(F)(F)F' | python3 print_mols.py - -x14
+
+                                                        O                            
+                                                                                     
+                                                    *                                
+                                                                                     
+                                        N   *   C                                    
+                                                                                     
+                                        *         *                                  
+                                                                                     
+                                        N           N                                
+                                          *     *       *                            
+                                            C               C                        
+                                                                                     
+                                            *                                        
+                                                                                     
+                                C           C                                        
+                            *       *     *                                          
+                        C               N                                            
+                                                                                     
+                        *               *                                            
+                                                                                     
+            F           C               C                                            
+                *     *     *       *     *                                          
+                    C           C           O                                        
+                                                                                     
+                  *   *         *                                   N                
+                                                                *                    
+                F       F       O           C               C                        
+                                    *     *     *       *                            
+                                        C           C                                
+                                                                                     
+                                        *           *                                
+                                                                                     
+                                        C           C                                
+                                          *     *                                    
+                                            C                                        
+                                                                                     
+                                            *                                        
+                                                                                     
+                                            Cl                                        
+                                                                                
+```
+
 
 ## Method 2: Using gnuplot
 
@@ -146,13 +261,5 @@ $ gnuplot -e "set term dumb; \
 1. Carhart, R. E. A Model-Based Approach to the Teletype Printing of Chemical Structures. J. Chem. Inf. Model. 1976, 16 (2), 82–88. https://doi.org/10.1021/ci60006a011.
 2. Feldmann, R. J.; Koniver, D. A. Interactive Searching of Chemical Files and Structural Diagram Generation from Wiswesser Line Notation. J. Chem. Doc. 1971, 11 (3), 154–159. https://doi.org/10.1021/c160042a008.
 3. Thomson, L. H.; Hyde, E.; Matthews, F. W. Organic Search and Display Using a Connectivity Matrix Derived from Wiswesser Notation. J. Chem. Doc. 1967, 7 (4), 204–209. https://doi.org/10.1021/c160027a005.
-
-
-
-
-
-
-
-
 
 
